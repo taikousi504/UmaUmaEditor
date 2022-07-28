@@ -1,0 +1,109 @@
+{
+    "Common": {
+        "UmaMusumeLibraryURL":"https://raw.githubusercontent.com/amate/UmaUmaCruise/master/UmaLibrary/UmaMusumeLibrary_v2.json",
+
+        "TargetWindow": {
+            "WindowName": "umamusume",
+            "ClassName":  "UnityWndClass"
+        },
+
+        "TestBounds": {
+            "BaseClientSize": {
+                "width": 588,
+                "height": 1046
+            },
+            "UmaMusumeSubNameBounds": {
+                "x": 256, "y": 118, "width": 267, "height": 27
+            },
+            "UmaMusumeNameBounds": {
+                "x": 271, "y": 143, "width": 229, "height": 27
+            },
+            "URACurrentTurnBounds": {
+                "x": 11, "y": 35, "width": 166, "height": 18
+            },
+            "AoharuCurrentTurnBounds": {
+                "x": 135, "y": 35, "width": 166, "height": 18
+            },
+            "EventCategoryBounds": {
+                "x": 90, "y": 170, "width": 177, "height": 22
+            },
+            "EventNameBounds": {
+                "x": 90, "y": 196, "width": 360, "height": 33
+            },
+            "EventNameIconBounds": {
+                "x": 96, "y": 197, "width": 30, "height": 30
+            },
+            "EventBottomOptionBounds": {
+                "x": 62, "y": 659, "width": 500, "height": 44
+            },
+            "CurrentMenuBounds" : {
+                "x": 19, "y": 2, "width": 114, "height": 31
+            },
+            "BackButtonBounds" : {
+                "x": 43, "y": 993, "width": 58, "height": 32
+            },
+            "RaceDetailBounds": {
+                "x": 30, "y": 451, "width": 316, "height": 29
+            },
+            "IkuseiUmaMusumeSubNameBounds": {
+                "x": 30, "y": 319, "width": 230, "height": 20
+            },
+            "IkuseiUmaMusumeNameBounds": {
+                "x": 30, "y": 340, "width": 225, "height": 20
+            },
+            "AbilityDetailBounds": {
+                "x": 510, "y": 610, "width": 35, "height": 44
+            }
+        },
+
+        "ImageProcess": {
+            "HSV_TextColorBounds": [
+                [12, 13],
+                [75, 255],
+                [100, 180]
+            ]
+        },
+
+        "Simstring": {
+            "MinThreshold": 0.40,
+            "UmaMusumeNameMinThreshold": 0.30
+        }
+    },
+
+    "TypoDictionary": [
+        {"Typo": "初語", "Corret": "初詣"},
+        {"Typo": "初議", "Corret": "初詣"},
+        {"Typo": "初詳", "Corret": "初詣"}
+    ],
+
+    "Theme": {
+        "Status": {
+            "+": "#4CAF50",
+            "-": "#F44336"
+        },
+        "Dark": {
+            "Background": "#383838",
+            "Text": "#FFFFFF",
+            "RaceList": {
+                "BkFavorite": "#78181E",
+                "BkRow1": "#211E5C",
+                "BkRow2": "#502A71"
+            },
+            "RichEditPopup": {
+                "Background": "#37474F"
+            }
+        },
+        "Light": {
+            "Background": "#FFFFFF",
+            "Text": "#000000",
+            "RaceList": {
+                "BkFavorite": "#FFD700",
+                "BkRow1": "#E6E7FF",
+                "BkRow2": "#FCE4D6"
+            },
+            "RichEditPopup": {
+                "Background": "#E3F2FD"
+            }
+        }
+    }
+}
