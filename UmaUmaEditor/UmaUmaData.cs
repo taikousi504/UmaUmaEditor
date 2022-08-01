@@ -32,9 +32,9 @@ namespace UmaUmaEditor
     internal class UmaUmaData
     {
         [JsonPropertyName("Charactor")]
-        public Dictionary<string, Dictionary<string, CardEvent>> charas { get; set; }
+        public Dictionary<string, SortedDictionary<string, CardEvent>> charas { get; set; }
 
         [JsonPropertyName("Support")]
-        public Dictionary<string, Dictionary<string, CardEvent>> supports { get; set; }
+        public Dictionary<string, SortedDictionary<string, CardEvent>> supports { get; set; }
     }
 }

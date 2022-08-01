@@ -352,34 +352,169 @@ namespace UmaUmaEditor
                 cbEdit3.SelectedIndex = cbEdit3OldSelectedIndex;
             }
 
-            else if (data.charas[cb2.Text].ContainsKey(cbEdit3.Text) == false)
-            {
-                DialogResult result = MessageBox.Show("指定したカードは存在しません。新規作成しますか？", "Not Found Card.", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
+            else {
+                if (cb1.SelectedIndex == (int)Kinds.KIND_CHARACTOR)
                 {
-                    data.charas[cb2.Text].Add(cbEdit3.Text, new CardEvent { events = new List<Dictionary<string, List<OptionEffect>>>() });
-                    data.charas[cb2.Text][cbEdit3.Text].events.Add(new Dictionary<string, List<OptionEffect>>());
-                    data.charas[cb2.Text][cbEdit3.Text].events[0].Add("新イベント名", new List<OptionEffect>());
-                    data.charas[cb2.Text][cbEdit3.Text].events[0]["新イベント名"].Add(new OptionEffect
+                    if (data.charas[cb2.Text].ContainsKey(cbEdit3.Text) == false)
                     {
-                        option = "選択肢1", 
-                        effect = "効果1"
-                    });
-                    data.charas[cb2.Text][cbEdit3.Text].events[0]["新イベント名"].Add(new OptionEffect
+                        DialogResult result = MessageBox.Show("指定したカードは存在しません。新規作成しますか？", "Not Found Card.", MessageBoxButtons.YesNo);
+                        if (result == DialogResult.Yes)
+                        {
+                            data.charas[cb2.Text].Add(cbEdit3.Text, new CardEvent { events = new List<Dictionary<string, List<OptionEffect>>>() });
+                            data.charas[cb2.Text][cbEdit3.Text].events.Add(new Dictionary<string, List<OptionEffect>>());
+                            data.charas[cb2.Text][cbEdit3.Text].events[0].Add("新イベント名", new List<OptionEffect>());
+                            data.charas[cb2.Text][cbEdit3.Text].events[0]["新イベント名"].Add(new OptionEffect
+                            {
+                                option = "選択肢1",
+                                effect = "効果1"
+                            });
+                            data.charas[cb2.Text][cbEdit3.Text].events[0]["新イベント名"].Add(new OptionEffect
+                            {
+                                option = "選択肢2",
+                                effect = "効果2"
+                            });
+
+                            UpdateCB3(data.charas[cb2.Text].Count - 1);
+                            UpdateCB4();
+                            UpdateOptionEffect();
+                        }
+                        else
+                        {
+                            cbEdit3.SelectedIndex = cbEdit3OldSelectedIndex;
+                        }
+                    }
+                    else
                     {
-                        option = "選択肢2",
-                        effect = "効果2"
-                    });
+                        cbEdit3.SelectedIndex = cbEdit3OldSelectedIndex;
+                    }
                 }
                 else
                 {
-                    cbEdit3.SelectedIndex = cbEdit3OldSelectedIndex;
+                    if (data.supports[cb2.Text].ContainsKey(cbEdit3.Text) == false)
+                    {
+                        DialogResult result = MessageBox.Show("指定したカードは存在しません。新規作成しますか？", "Not Found Card.", MessageBoxButtons.YesNo);
+                        if (result == DialogResult.Yes)
+                        {
+                            data.supports[cb2.Text].Add(cbEdit3.Text, new CardEvent { events = new List<Dictionary<string, List<OptionEffect>>>() });
+                            data.supports[cb2.Text][cbEdit3.Text].events.Add(new Dictionary<string, List<OptionEffect>>());
+                            data.supports[cb2.Text][cbEdit3.Text].events[0].Add("新イベント名", new List<OptionEffect>());
+                            data.supports[cb2.Text][cbEdit3.Text].events[0]["新イベント名"].Add(new OptionEffect
+                            {
+                                option = "選択肢1",
+                                effect = "効果1"
+                            });
+                            data.supports[cb2.Text][cbEdit3.Text].events[0]["新イベント名"].Add(new OptionEffect
+                            {
+                                option = "選択肢2",
+                                effect = "効果2"
+                            });
+
+                            UpdateCB3(data.supports[cb2.Text].Count - 1);
+                            UpdateCB4();
+                            UpdateOptionEffect();
+                        }
+                        else
+                        {
+                            cbEdit3.SelectedIndex = cbEdit3OldSelectedIndex;
+                        }
+                    }
+                    else
+                    {
+                        cbEdit3.SelectedIndex = cbEdit3OldSelectedIndex;
+                    }
                 }
             }
+        }
 
-            UpdateCB3(data.charas[cb2.Text].Count - 1);
-            UpdateCB4();
-            UpdateOptionEffect();
+        void AddEvent()
+        {
+            if (string.IsNullOrEmpty(cbEdit4.Text))
+            {
+                cbEdit4.SelectedIndex = cbEdit4OldSelectedIndex;
+            }
+            else
+            {
+                if (cb1.SelectedIndex == (int)Kinds.KIND_CHARACTOR)
+                {
+                    bool isExistEvent = false;
+                    for (int i = 0; i < data.charas[cb2.Text][cbEdit3.Text].events.Count; i++)
+                    {
+                        if (data.charas[cb2.Text][cbEdit3.Text].events[i].ContainsKey(cbEdit4.Text))
+                        {
+                            isExistEvent = true;
+                            cbEdit4.SelectedIndex = i;
+                            break;
+                        }
+                    }
+
+                    if (isExistEvent == false)
+                    {
+                        DialogResult result = MessageBox.Show("指定したイベントは存在しません。新規作成しますか？", "Not Found Event.", MessageBoxButtons.YesNo);
+                        if (result == DialogResult.Yes)
+                        {
+                            data.charas[cb2.Text][cbEdit3.Text].events.Add(new Dictionary<string, List<OptionEffect>>());
+                            data.charas[cb2.Text][cbEdit3.Text].events[data.charas[cb2.Text][cbEdit3.Text].events.Count - 1].Add(cbEdit4.Text, new List<OptionEffect>());
+                            data.charas[cb2.Text][cbEdit3.Text].events[data.charas[cb2.Text][cbEdit3.Text].events.Count - 1][cbEdit4.Text].Add(new OptionEffect
+                            {
+                                option = "選択肢1",
+                                effect = "効果1"
+                            });
+                            data.charas[cb2.Text][cbEdit3.Text].events[data.charas[cb2.Text][cbEdit3.Text].events.Count - 1][cbEdit4.Text].Add(new OptionEffect
+                            {
+                                option = "選択肢2",
+                                effect = "効果2"
+                            });
+
+                            UpdateCB4(data.charas[cb2.Text][cbEdit3.Text].events.Count - 1);
+                            UpdateOptionEffect();
+                        }
+                        else
+                        {
+                            cbEdit4.SelectedIndex = cbEdit4OldSelectedIndex;
+                        }
+                    }
+                }
+                else
+                {
+                    bool isExistEvent = false;
+                    for (int i = 0; i < data.supports[cb2.Text][cbEdit3.Text].events.Count; i++)
+                    {
+                        if (data.supports[cb2.Text][cbEdit3.Text].events[i].ContainsKey(cbEdit4.Text))
+                        {
+                            isExistEvent = true;
+                            cbEdit4.SelectedIndex = i;
+                            break;
+                        }
+                    }
+
+                    if (isExistEvent == false)
+                    {
+                        DialogResult result = MessageBox.Show("指定したイベントは存在しません。新規作成しますか？", "Not Found Event.", MessageBoxButtons.YesNo);
+                        if (result == DialogResult.Yes)
+                        {
+                            data.supports[cb2.Text][cbEdit3.Text].events.Add(new Dictionary<string, List<OptionEffect>>());
+                            data.supports[cb2.Text][cbEdit3.Text].events[data.supports[cb2.Text][cbEdit3.Text].events.Count - 1].Add(cbEdit4.Text, new List<OptionEffect>());
+                            data.supports[cb2.Text][cbEdit3.Text].events[data.supports[cb2.Text][cbEdit3.Text].events.Count - 1][cbEdit4.Text].Add(new OptionEffect
+                            {
+                                option = "選択肢1",
+                                effect = "効果1"
+                            });
+                            data.supports[cb2.Text][cbEdit3.Text].events[data.supports[cb2.Text][cbEdit3.Text].events.Count - 1][cbEdit4.Text].Add(new OptionEffect
+                            {
+                                option = "選択肢2",
+                                effect = "効果2"
+                            });
+
+                            UpdateCB4(data.supports[cb2.Text][cbEdit3.Text].events.Count - 1);
+                            UpdateOptionEffect();
+                        }
+                        else
+                        {
+                            cbEdit4.SelectedIndex = cbEdit4OldSelectedIndex;
+                        }
+                    }
+                }
+            }
         }
 
         private void UmaUmaEditor_KeyDown(object sender, KeyEventArgs e)
@@ -506,14 +641,50 @@ namespace UmaUmaEditor
                 WriteIndented = true
             };
 
+            //【～～～】キャラ名　→　キャラ名【～～～】にする処理
+            if (cbConvertText.Checked)
+            {
+                foreach (var v1 in data.charas.Keys.ToList())
+                {
+                    foreach (var v2 in data.charas[v1].Keys.ToList())
+                    {
+                        if (v2.StartsWith("【") && v2.Contains('】'))
+                        {
+                            string tmp = v2.Substring(0, v2.IndexOf('】', 0) + 1);
+                            string tmp2 = v2.Substring(v2.IndexOf('】', 0) + 1);
+                            data.charas[v1][tmp2 + tmp] = data.charas[v1][v2];
+                            data.charas[v1].Remove(v2);
+                        }
+                    }
+                }
+
+                foreach (var v1 in data.supports.Keys.ToList())
+                {
+                    foreach (var v2 in data.supports[v1].Keys.ToList())
+                    {
+                        if (v2.StartsWith("[") && v2.Contains(']'))
+                        {
+                            string tmp = v2.Substring(0, v2.IndexOf(']', 0) + 1);
+                            string tmp2 = v2.Substring(v2.IndexOf(']', 0) + 1);
+                            data.supports[v1][tmp2 + tmp] = data.supports[v1][v2];
+                            data.supports[v1].Remove(v2);
+                        }
+                    }
+                }
+            }
 
             //シリアライズ
             var str = JsonSerializer.Serialize(data, options);
 
-            using (StreamWriter sw = new StreamWriter("UmaLibrary/UmaMusumeLibrary_Test.json"))
+            //バックアップ
+            File.Copy("UmaLibrary/UmaMusumeLibrary.json", "UmaLibrary/UmaMusumeLibrary_backup.json", true);
+
+            using (StreamWriter sw = new StreamWriter("UmaLibrary/UmaMusumeLibrary.json"))
             {
                 sw.Write(str);
             }
+
+            MessageBox.Show("保存しました。", "保存完了", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void tbOption1_Enter(object sender, EventArgs e)
@@ -577,45 +748,6 @@ namespace UmaUmaEditor
             AddTextToTextBox("\n");
         }
 
-        private void cbEdit3_TextChanged(object sender, EventArgs e)
-        {
-            //if (cb1.SelectedIndex == (int)Kinds.KIND_CHARACTOR)
-            //{
-            //    if (data.charas[cb2.Text].ContainsKey(cbEdit3.Text) == false)
-            //    {
-            //        data.charas[cb2.Text].Add(cbEdit3.Text, new CardEvent { events = new List<Dictionary<string, List<OptionEffect>>>() });
-            //    }
-            //}
-            //else
-            //{
-            //    if (data.supports[cb2.Text].ContainsKey(cbEdit3.Text) == false)
-            //    {
-            //        data.supports[cb2.Text].Add(cbEdit3.Text, new CardEvent { events = new List<Dictionary<string, List<OptionEffect>>>() });
-            //    }
-            //}
-
-        }
-
-        private void cbEdit4_TextChanged(object sender, EventArgs e)
-        {
-            //if (cb1.SelectedIndex == (int)Kinds.KIND_CHARACTOR)
-            //{
-            //    if (data.charas[cb2.Text][cbEdit3.Text].events.Count == 0)
-            //    {
-            //        data.charas[cb2.Text][cbEdit3.Text].events.Add(new Dictionary<string, List<OptionEffect>>());
-            //        data.charas[cb2.Text][cbEdit3.Text].events[data.charas[cb2.Text][cbEdit3.Text].events.Count - 1].Add(cbEdit4.Text, new List<OptionEffect>());
-            //    }
-            //}
-            //else
-            //{
-            //    if (data.charas[cb2.Text][cbEdit3.Text].events.Count == 0)
-            //    {
-            //        data.supports[cb2.Text][cbEdit3.Text].events.Add(new Dictionary<string, List<OptionEffect>>());
-            //        data.supports[cb2.Text][cbEdit3.Text].events[data.charas[cb2.Text][cbEdit3.Text].events.Count - 1].Add(cbEdit4.Text, new List<OptionEffect>());
-            //    }
-            //}
-        }
-
         private void cbEdit3_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Enter)
@@ -626,12 +758,20 @@ namespace UmaUmaEditor
 
         private void cbEdit4_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyData == Keys.Enter)
+            {
+                AddEvent();
+            }
         }
 
-        private void btnKakko_Click(object sender, EventArgs e)
+        private void btnKakkoChara_Click(object sender, EventArgs e)
         {
             AddTextToTextBox("【】", 1);
+        }
+
+        private void btnKakkoSupport_Click(object sender, EventArgs e)
+        {
+            AddTextToTextBox("[]", 1);
         }
 
         private void cbEdit3_Enter(object sender, EventArgs e)
@@ -672,6 +812,200 @@ namespace UmaUmaEditor
         private void cbEdit4_KeyUp(object sender, KeyEventArgs e)
         {
             GetCbEdit4SelectionStart();
+        }
+
+        private void UpdateData(object sender, EventArgs e)
+        {
+            //現在選択中のテキスト更新
+            if (cb1.SelectedIndex == (int)Kinds.KIND_CHARACTOR)
+            {
+                //選択肢1
+                if (string.IsNullOrEmpty(tbOption1.Text) == false)
+                {
+                    if (data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].Count <= 0)
+                    {
+                        data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].Add(new OptionEffect());
+                    }
+                    data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][0].option = tbOption1.Text;
+                    data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][0].effect = tbEffect1.Text;
+                }
+                //選択肢2
+                if (string.IsNullOrEmpty(tbOption2.Text) == false)
+                {
+                    if (data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].Count <= 1)
+                    {
+                        data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].Add(new OptionEffect());
+                    }
+
+                    data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][1].option = tbOption2.Text;
+                    data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][1].effect = tbEffect2.Text;
+                }
+                //選択肢3
+                if (string.IsNullOrEmpty(tbOption3.Text) == false)
+                {
+                    if (data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].Count <= 2)
+                    {
+                        data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].Add(new OptionEffect());
+                    }
+
+                    data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][2].option = tbOption3.Text;
+                    data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][2].effect = tbEffect3.Text;
+                }
+                //選択肢4
+                if (string.IsNullOrEmpty(tbOption4.Text) == false)
+                {
+                    if (data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].Count <= 3)
+                    {
+                        data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].Add(new OptionEffect());
+                    }
+
+                    data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][3].option = tbOption4.Text;
+                    data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][3].effect = tbEffect4.Text;
+                }
+                //選択肢5
+                if (string.IsNullOrEmpty(tbOption5.Text) == false)
+                {
+                    if (data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].Count <= 4)
+                    {
+                        data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].Add(new OptionEffect());
+                    }
+
+                    data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][4].option = tbOption5.Text;
+                    data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][4].effect = tbEffect5.Text;
+                }
+
+                //空白チェック (OptionEffect両方空なら要素削除)
+                if (string.IsNullOrEmpty(tbOption1.Text.Replace(" ", "")) && string.IsNullOrEmpty(tbEffect1.Text.Replace(" ", "")))
+                {
+                    //1個目の選択肢は空白許されない
+                    data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][0].option = "選択肢1";
+                    data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][0].effect = "効果1";
+                }
+                if (string.IsNullOrEmpty(tbOption2.Text.Replace(" ", "")) && string.IsNullOrEmpty(tbEffect2.Text.Replace(" ", "")))
+                {
+                    //2個目の選択肢は空白許されない
+                    data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][1].option = "選択肢2";
+                    data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][1].effect = "効果2";
+                }
+                if (string.IsNullOrEmpty(tbOption3.Text.Replace(" ", "")) && string.IsNullOrEmpty(tbEffect3.Text.Replace(" ", "")))
+                {
+                    //下に選択肢あったら上にシフト
+                    if (data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].Count == 4)
+                    {
+                        data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][2] = data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][3];
+                        data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].RemoveAt(3);
+                    }
+                    else if (data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].Count == 5)
+                    {
+                        data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][2] = data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][3];
+                        data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][3] = data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][4];
+                        data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].RemoveAt(4);
+                    }
+                }
+                if (string.IsNullOrEmpty(tbOption4.Text.Replace(" ", "")) && string.IsNullOrEmpty(tbEffect4.Text.Replace(" ", "")))
+                {
+                    //下に選択肢あったら上にシフト
+                    if (data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].Count == 5)
+                    {
+                        data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][3] = data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][4];
+                        data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].RemoveAt(4);
+                    }
+                }
+                if (string.IsNullOrEmpty(tbOption5.Text.Replace(" ", "")) && string.IsNullOrEmpty(tbEffect5.Text.Replace(" ", "")))
+                {
+                    //要素削除
+                    if (data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].Count == 5)
+                    {
+                        data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].RemoveAt(4);
+                    }
+                }
+            }
+            else
+            {
+                //選択肢1
+                if (string.IsNullOrEmpty(tbOption1.Text) == false &&
+                    data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].Count > 0)
+                {
+                    data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][0].option = tbOption1.Text;
+                    data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][0].effect = tbEffect1.Text;
+                }
+                //選択肢2
+                if (string.IsNullOrEmpty(tbOption2.Text) == false &&
+                    data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].Count > 1)
+                {
+                    data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][1].option = tbOption2.Text;
+                    data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][1].effect = tbEffect2.Text;
+                }
+                //選択肢3
+                if (string.IsNullOrEmpty(tbOption3.Text) == false &&
+                    data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].Count > 2)
+                {
+                    data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][2].option = tbOption3.Text;
+                    data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][2].effect = tbEffect3.Text;
+                }
+                //選択肢4
+                if (string.IsNullOrEmpty(tbOption4.Text) == false &&
+                    data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].Count > 3)
+                {
+                    data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][3].option = tbOption4.Text;
+                    data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][3].effect = tbEffect4.Text;
+                }
+                //選択肢5
+                if (string.IsNullOrEmpty(tbOption5.Text) == false &&
+                    data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].Count > 4)
+                {
+                    data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][4].option = tbOption5.Text;
+                    data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][4].effect = tbEffect5.Text;
+                }
+
+                //空白チェック (OptionEffect両方空なら要素削除)
+                if (string.IsNullOrEmpty(tbOption1.Text.Replace(" ", "")) && string.IsNullOrEmpty(tbEffect1.Text.Replace(" ", "")))
+                {
+                    //1個目の選択肢は空白許されない
+                    data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][0].option = "選択肢1";
+                    data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][0].effect = "効果1";
+                }
+                if (string.IsNullOrEmpty(tbOption2.Text.Replace(" ", "")) && string.IsNullOrEmpty(tbEffect2.Text.Replace(" ", "")))
+                {
+                    //2個目の選択肢は空白許されない
+                    data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][1].option = "選択肢2";
+                    data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][1].effect = "効果2";
+                }
+                if (string.IsNullOrEmpty(tbOption3.Text.Replace(" ", "")) && string.IsNullOrEmpty(tbEffect3.Text.Replace(" ", "")))
+                {
+                    //下に選択肢あったら上にシフト
+                    if (data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].Count == 4)
+                    {
+                        data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][2] = data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][3];
+                        data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].RemoveAt(3);
+                    }
+                    else if (data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].Count == 5)
+                    {
+                        data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][2] = data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][3];
+                        data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][3] = data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][4];
+                        data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].RemoveAt(4);
+                    }
+                }
+                if (string.IsNullOrEmpty(tbOption4.Text.Replace(" ", "")) && string.IsNullOrEmpty(tbEffect4.Text.Replace(" ", "")))
+                {
+                    //下に選択肢あったら上にシフト
+                    if (data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].Count == 5)
+                    {
+                        data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][3] = data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text][4];
+                        data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].RemoveAt(4);
+                    }
+                }
+                if (string.IsNullOrEmpty(tbOption5.Text.Replace(" ", "")) && string.IsNullOrEmpty(tbEffect5.Text.Replace(" ", "")))
+                {
+                    //要素削除
+                    if (data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].Count == 5)
+                    {
+                        data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4.SelectedIndex][cbEdit4.Text].RemoveAt(4);
+                    }
+                }
+            }
+
+            UpdateOptionEffect();
         }
     }
 }

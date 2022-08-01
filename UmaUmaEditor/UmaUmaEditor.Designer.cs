@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UmaUmaEditor));
             this.btnSave = new System.Windows.Forms.Button();
             this.groupEdit = new System.Windows.Forms.GroupBox();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.pb = new System.Windows.Forms.PictureBox();
             this.cb1 = new System.Windows.Forms.ComboBox();
             this.cb2 = new System.Windows.Forms.ComboBox();
@@ -58,7 +59,8 @@
             this.cbEdit3 = new System.Windows.Forms.ComboBox();
             this.btnSpeed = new System.Windows.Forms.Button();
             this.groupFixedPhrase = new System.Windows.Forms.GroupBox();
-            this.btnKakko = new System.Windows.Forms.Button();
+            this.btnKakkoSupport = new System.Windows.Forms.Button();
+            this.btnKakkoChara = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnCanGoOut = new System.Windows.Forms.Button();
             this.cbHintLv = new System.Windows.Forms.ComboBox();
@@ -96,6 +98,7 @@
             this.btnGuts = new System.Windows.Forms.Button();
             this.btnPower = new System.Windows.Forms.Button();
             this.btnStamina = new System.Windows.Forms.Button();
+            this.cbConvertText = new System.Windows.Forms.CheckBox();
             this.groupEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb)).BeginInit();
             this.groupFixedPhrase.SuspendLayout();
@@ -122,6 +125,7 @@
             // 
             // groupEdit
             // 
+            this.groupEdit.Controls.Add(this.btnUpdate);
             this.groupEdit.Controls.Add(this.pb);
             this.groupEdit.Controls.Add(this.cb1);
             this.groupEdit.Controls.Add(this.cb2);
@@ -157,6 +161,16 @@
             this.groupEdit.TabIndex = 1;
             this.groupEdit.TabStop = false;
             this.groupEdit.Text = "編集";
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(11, 107);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(134, 43);
+            this.btnUpdate.TabIndex = 47;
+            this.btnUpdate.Text = "更新";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.UpdateData);
             // 
             // pb
             // 
@@ -209,7 +223,6 @@
             // 
             this.tbOption5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
             this.tbOption5.Location = new System.Drawing.Point(54, 600);
-            this.tbOption5.Multiline = true;
             this.tbOption5.Name = "tbOption5";
             this.tbOption5.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.tbOption5.Size = new System.Drawing.Size(496, 23);
@@ -264,7 +277,6 @@
             // 
             this.tbOption4.BackColor = System.Drawing.Color.LightCyan;
             this.tbOption4.Location = new System.Drawing.Point(54, 489);
-            this.tbOption4.Multiline = true;
             this.tbOption4.Name = "tbOption4";
             this.tbOption4.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.tbOption4.Size = new System.Drawing.Size(496, 23);
@@ -275,7 +287,6 @@
             // 
             this.tbOption3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.tbOption3.Location = new System.Drawing.Point(55, 378);
-            this.tbOption3.Multiline = true;
             this.tbOption3.Name = "tbOption3";
             this.tbOption3.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.tbOption3.Size = new System.Drawing.Size(496, 23);
@@ -286,7 +297,6 @@
             // 
             this.tbOption2.BackColor = System.Drawing.Color.LightYellow;
             this.tbOption2.Location = new System.Drawing.Point(55, 267);
-            this.tbOption2.Multiline = true;
             this.tbOption2.Name = "tbOption2";
             this.tbOption2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.tbOption2.Size = new System.Drawing.Size(496, 23);
@@ -297,7 +307,6 @@
             // 
             this.tbOption1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
             this.tbOption1.Location = new System.Drawing.Point(54, 156);
-            this.tbOption1.Multiline = true;
             this.tbOption1.Name = "tbOption1";
             this.tbOption1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.tbOption1.Size = new System.Drawing.Size(496, 23);
@@ -405,7 +414,6 @@
             this.cbEdit4.Size = new System.Drawing.Size(730, 23);
             this.cbEdit4.TabIndex = 62;
             this.cbEdit4.SelectedIndexChanged += new System.EventHandler(this.cb4_SelectedIndexChanged);
-            this.cbEdit4.TextChanged += new System.EventHandler(this.cbEdit4_TextChanged);
             this.cbEdit4.Enter += new System.EventHandler(this.cbEdit4_Enter);
             this.cbEdit4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbEdit4_KeyDown);
             this.cbEdit4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbEdit4_KeyUp);
@@ -422,7 +430,6 @@
             this.cbEdit3.Size = new System.Drawing.Size(779, 23);
             this.cbEdit3.TabIndex = 61;
             this.cbEdit3.SelectedIndexChanged += new System.EventHandler(this.cb3_SelectedIndexChanged);
-            this.cbEdit3.TextChanged += new System.EventHandler(this.cbEdit3_TextChanged);
             this.cbEdit3.Enter += new System.EventHandler(this.cbEdit3_Enter);
             this.cbEdit3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbEdit3_KeyDown);
             this.cbEdit3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbEdit3_KeyUp);
@@ -444,7 +451,8 @@
             // 
             // groupFixedPhrase
             // 
-            this.groupFixedPhrase.Controls.Add(this.btnKakko);
+            this.groupFixedPhrase.Controls.Add(this.btnKakkoSupport);
+            this.groupFixedPhrase.Controls.Add(this.btnKakkoChara);
             this.groupFixedPhrase.Controls.Add(this.btnDelete);
             this.groupFixedPhrase.Controls.Add(this.btnCanGoOut);
             this.groupFixedPhrase.Controls.Add(this.cbHintLv);
@@ -494,15 +502,25 @@
             this.groupFixedPhrase.TabStop = false;
             this.groupFixedPhrase.Text = "定型文挿入";
             // 
-            // btnKakko
+            // btnKakkoSupport
             // 
-            this.btnKakko.Location = new System.Drawing.Point(688, 96);
-            this.btnKakko.Name = "btnKakko";
-            this.btnKakko.Size = new System.Drawing.Size(70, 23);
-            this.btnKakko.TabIndex = 46;
-            this.btnKakko.Text = "【】";
-            this.btnKakko.UseVisualStyleBackColor = true;
-            this.btnKakko.Click += new System.EventHandler(this.btnKakko_Click);
+            this.btnKakkoSupport.Location = new System.Drawing.Point(701, 96);
+            this.btnKakkoSupport.Name = "btnKakkoSupport";
+            this.btnKakkoSupport.Size = new System.Drawing.Size(58, 23);
+            this.btnKakkoSupport.TabIndex = 47;
+            this.btnKakkoSupport.Text = "［］";
+            this.btnKakkoSupport.UseVisualStyleBackColor = true;
+            this.btnKakkoSupport.Click += new System.EventHandler(this.btnKakkoSupport_Click);
+            // 
+            // btnKakkoChara
+            // 
+            this.btnKakkoChara.Location = new System.Drawing.Point(638, 96);
+            this.btnKakkoChara.Name = "btnKakkoChara";
+            this.btnKakkoChara.Size = new System.Drawing.Size(58, 23);
+            this.btnKakkoChara.TabIndex = 46;
+            this.btnKakkoChara.Text = "【】";
+            this.btnKakkoChara.UseVisualStyleBackColor = true;
+            this.btnKakkoChara.Click += new System.EventHandler(this.btnKakkoChara_Click);
             // 
             // btnDelete
             // 
@@ -989,11 +1007,26 @@
             this.btnStamina.UseVisualStyleBackColor = false;
             this.btnStamina.Click += new System.EventHandler(this.AddTextToTextBox);
             // 
+            // cbConvertText
+            // 
+            this.cbConvertText.AutoSize = true;
+            this.cbConvertText.Checked = true;
+            this.cbConvertText.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbConvertText.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbConvertText.ForeColor = System.Drawing.Color.Black;
+            this.cbConvertText.Location = new System.Drawing.Point(562, 956);
+            this.cbConvertText.Name = "cbConvertText";
+            this.cbConvertText.Size = new System.Drawing.Size(220, 19);
+            this.cbConvertText.TabIndex = 4;
+            this.cbConvertText.Text = "キャラ名【カード名】の形式に変換して出力";
+            this.cbConvertText.UseVisualStyleBackColor = true;
+            // 
             // UmaUmaEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 991);
+            this.Controls.Add(this.cbConvertText);
             this.Controls.Add(this.groupFixedPhrase);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.groupEdit);
@@ -1016,6 +1049,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numUDMotivation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDParam)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1087,6 +1121,9 @@
         private Label label1;
         private ComboBox cbEdit4;
         private ComboBox cbEdit3;
-        private Button btnKakko;
+        private Button btnKakkoChara;
+        private Button btnUpdate;
+        private Button btnKakkoSupport;
+        private CheckBox cbConvertText;
     }
 }
