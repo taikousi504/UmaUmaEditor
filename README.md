@@ -1,5 +1,5 @@
 # UmaUmaUpdater
-個人で更新したjsonファイルをダウンロードしてUmaUmaCruiseを起動するアプリです。  
+個人で更新したUmamusumeLibrary.jsonをダウンロードしてUmaUmaCruiseを起動するアプリです。  
 UmaUmaCruiseの更新が止まったため、制作しました。
 
 ## 使い方
