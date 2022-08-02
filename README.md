@@ -2,6 +2,9 @@
 個人で更新したUmamusumeLibrary.jsonをダウンロードしてUmaUmaCruiseを起動するアプリです。  
 UmaUmaCruiseの更新が止まったため、制作しました。
 
+※正しく配置されているにもかかわらずエラーが発生する場合があります。
+少し時間をおいて再度お試しください。
+
 ## 使い方
 ・Releaseからzipファイルをダウンロード  
 ・解凍したものをフォルダごとUmaUmaCruise.exeがあるフォルダに配置  
