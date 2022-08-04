@@ -9,17 +9,43 @@ namespace UmaUmaUpdater
     {
         static void Main(string[] args)
         {
+            string jsonURL = "https://raw.githubusercontent.com/taikousi504/UmaUmaEditor/master/UmaUmaUpdater/UmaMusumeLibrary.json";
+
+            //Config.ini読み込み
+            if (File.Exists("Config.ini") == true)
+            {
+                using (StreamReader sr = new StreamReader("Config.ini"))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        string? line = sr.ReadLine();
+                        if (line?.StartsWith("JSON_URL=") == true)
+                        {
+                            jsonURL = line.Substring(9);
+                        }
+                    }
+                }
+            }
+
             //jsonダウンロード
             try
             {
                 Console.WriteLine("UmaMusumeLibrary.jsonを更新します。");
-                WebClient wc = new WebClient();
-                wc.DownloadFile("https://raw.githubusercontent.com/taikousi504/UmaUmaEditor/master/UmaUmaUpdater/UmaMusumeLibrary.json", "../UmaLibrary/UmaMusumeLibrary.json");
-                wc.Dispose();
+                using (WebClient wc = new WebClient())
+                {
+                    wc.DownloadFile(jsonURL, "../UmaLibrary/UmaMusumeLibrary.json");
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine("エラーが発生しました。UmaUmaCruiseの実行ファイルがあるディレクトリにUmaUmaUpdaterフォルダを配置し、本アプリを起動させてください。");
+                Console.WriteLine("エラーが発生しました。\n" + e.Message);
+                Console.WriteLine("続行するには何かキーを押してください");
+                Console.ReadKey();
+            }
+
+            if (File.Exists("../UmaLibrary/UmaMusumeLibrary.json") == false)
+            {
+                Console.WriteLine("エラーが発生しました。\nファイルが存在しません。");
                 Console.WriteLine("続行するには何かキーを押してください");
                 Console.ReadKey();
             }
@@ -33,7 +59,7 @@ namespace UmaUmaUpdater
             }
             catch (Exception e)
             {
-                Console.WriteLine("エラーが発生しました。UmaUmaCruiseの実行ファイルが見つかりませんでした。");
+                Console.WriteLine("エラーが発生しました。UmaUmaCruiseの実行ファイルが見つかりませんでした。\n" + e.Message);
                 Console.WriteLine("続行するには何かキーを押してください");
                 Console.ReadKey();
             }
