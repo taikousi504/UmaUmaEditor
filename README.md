@@ -21,3 +21,4 @@ UmamusumeLibrary.jsonの雛形...ぽん様 (https://twitter.com/po_po_po_pong?s=
 UmaUmaCruiseで使用するUmamusumeLibrary.jsonを編集するアプリです。
 
 #ウマ娘 
+#UmaUmaCruise
