@@ -470,7 +470,10 @@ namespace UmaUmaEditor
                         }
                         else
                         {
-                            cbEdit4.SelectedIndex = cbEdit4OldSelectedIndex;
+                            var listEvent = new List<List<OptionEffect>>(data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4OldSelectedIndex].Values);
+                            data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4OldSelectedIndex].Clear();
+                            data.charas[cb2.Text][cbEdit3.Text].events[cbEdit4OldSelectedIndex][cbEdit4.Text] = listEvent[0];
+                            UpdateCB4(cbEdit4OldSelectedIndex);
                         }
                     }
                 }
@@ -510,7 +513,10 @@ namespace UmaUmaEditor
                         }
                         else
                         {
-                            cbEdit4.SelectedIndex = cbEdit4OldSelectedIndex;
+                            var listEvent = new List<List<OptionEffect>>(data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4OldSelectedIndex].Values);
+                            data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4OldSelectedIndex].Clear();
+                            data.supports[cb2.Text][cbEdit3.Text].events[cbEdit4OldSelectedIndex][cbEdit4.Text] = listEvent[0];
+                            UpdateCB4(cbEdit4OldSelectedIndex);
                         }
                     }
                 }
