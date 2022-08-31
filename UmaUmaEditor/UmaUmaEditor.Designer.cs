@@ -99,6 +99,7 @@
             this.btnPower = new System.Windows.Forms.Button();
             this.btnStamina = new System.Windows.Forms.Button();
             this.cbConvertText = new System.Windows.Forms.CheckBox();
+            this.btnOpenSaveDir = new System.Windows.Forms.Button();
             this.groupEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb)).BeginInit();
             this.groupFixedPhrase.SuspendLayout();
@@ -1021,11 +1022,24 @@
             this.cbConvertText.Text = "キャラ名【カード名】の形式に変換して出力";
             this.cbConvertText.UseVisualStyleBackColor = true;
             // 
+            // btnOpenSaveDir
+            // 
+            this.btnOpenSaveDir.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnOpenSaveDir.ForeColor = System.Drawing.Color.Black;
+            this.btnOpenSaveDir.Location = new System.Drawing.Point(14, 953);
+            this.btnOpenSaveDir.Name = "btnOpenSaveDir";
+            this.btnOpenSaveDir.Size = new System.Drawing.Size(145, 23);
+            this.btnOpenSaveDir.TabIndex = 5;
+            this.btnOpenSaveDir.Text = "json保存フォルダを開く";
+            this.btnOpenSaveDir.UseVisualStyleBackColor = true;
+            this.btnOpenSaveDir.Click += new System.EventHandler(this.btnOpenSaveDir_Click);
+            // 
             // UmaUmaEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 991);
+            this.Controls.Add(this.btnOpenSaveDir);
             this.Controls.Add(this.cbConvertText);
             this.Controls.Add(this.groupFixedPhrase);
             this.Controls.Add(this.btnSave);
@@ -1125,5 +1139,6 @@
         private Button btnUpdate;
         private Button btnKakkoSupport;
         private CheckBox cbConvertText;
+        private Button btnOpenSaveDir;
     }
 }

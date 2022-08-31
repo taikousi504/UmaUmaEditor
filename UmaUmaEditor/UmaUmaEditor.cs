@@ -357,22 +357,161 @@ namespace UmaUmaEditor
                 {
                     if (data.charas[cb2.Text].ContainsKey(cbEdit3.Text) == false)
                     {
-                        DialogResult result = MessageBox.Show("指定したカードは存在しません。新規作成しますか？", "Not Found Card.", MessageBoxButtons.YesNo);
+                        DialogResult result = MessageBox.Show("指定したキャラクターは存在しません。新規作成しますか？", "Not Found Charactor.", MessageBoxButtons.YesNo);
                         if (result == DialogResult.Yes)
                         {
                             data.charas[cb2.Text].Add(cbEdit3.Text, new CardEvent { events = new List<Dictionary<string, List<OptionEffect>>>() });
-                            data.charas[cb2.Text][cbEdit3.Text].events.Add(new Dictionary<string, List<OptionEffect>>());
-                            data.charas[cb2.Text][cbEdit3.Text].events[0].Add("新イベント名", new List<OptionEffect>());
-                            data.charas[cb2.Text][cbEdit3.Text].events[0]["新イベント名"].Add(new OptionEffect
+
+                            for (int i = 0; i < 11; i++)
+                            {
+                                data.charas[cb2.Text][cbEdit3.Text].events.Add(new Dictionary<string, List<OptionEffect>>());
+                            }
+
+                            #region 汎用イベント追加
+                            data.charas[cb2.Text][cbEdit3.Text].events[0].Add("ダンスレッスン", new List<OptionEffect>());
+                            data.charas[cb2.Text][cbEdit3.Text].events[0]["ダンスレッスン"].Add(new OptionEffect
                             {
                                 option = "選択肢1",
                                 effect = "効果1"
                             });
-                            data.charas[cb2.Text][cbEdit3.Text].events[0]["新イベント名"].Add(new OptionEffect
+                            data.charas[cb2.Text][cbEdit3.Text].events[0]["ダンスレッスン"].Add(new OptionEffect
                             {
                                 option = "選択肢2",
                                 effect = "効果2"
                             });
+
+                            data.charas[cb2.Text][cbEdit3.Text].events[1].Add("追加の自主トレ", new List<OptionEffect>());
+                            data.charas[cb2.Text][cbEdit3.Text].events[1]["追加の自主トレ"].Add(new OptionEffect
+                            {
+                                option = "選択肢1",
+                                effect = "体力-5\n直前のトレーニング種別+5\n秋川理事長の絆ゲージ+5"
+                            });
+                            data.charas[cb2.Text][cbEdit3.Text].events[1]["追加の自主トレ"].Add(new OptionEffect
+                            {
+                                option = "選択肢2",
+                                effect = "体力+5"
+                            });
+
+                            data.charas[cb2.Text][cbEdit3.Text].events[2].Add("新年の抱負", new List<OptionEffect>());
+                            data.charas[cb2.Text][cbEdit3.Text].events[2]["新年の抱負"].Add(new OptionEffect
+                            {
+                                option = "選択肢1",
+                                effect = "効果1"
+                            });
+                            data.charas[cb2.Text][cbEdit3.Text].events[2]["新年の抱負"].Add(new OptionEffect
+                            {
+                                option = "選択肢2",
+                                effect = "体力+20"
+                            });
+                            data.charas[cb2.Text][cbEdit3.Text].events[2]["新年の抱負"].Add(new OptionEffect
+                            {
+                                option = "選択肢3",
+                                effect = "スキルPt+20"
+                            });
+
+
+                            data.charas[cb2.Text][cbEdit3.Text].events[3].Add("初詣", new List<OptionEffect>());
+                            data.charas[cb2.Text][cbEdit3.Text].events[3]["初詣"].Add(new OptionEffect
+                            {
+                                option = "選択肢1",
+                                effect = "体力+30"
+                            });
+                            data.charas[cb2.Text][cbEdit3.Text].events[3]["初詣"].Add(new OptionEffect
+                            {
+                                option = "選択肢2",
+                                effect = "5種すべて+5"
+                            });
+                            data.charas[cb2.Text][cbEdit3.Text].events[3]["初詣"].Add(new OptionEffect
+                            {
+                                option = "選択肢3",
+                                effect = "スキルPt+35"
+                            });
+
+                            data.charas[cb2.Text][cbEdit3.Text].events[4].Add("夏合宿（2年目）にて", new List<OptionEffect>());
+                            data.charas[cb2.Text][cbEdit3.Text].events[4]["夏合宿（2年目）にて"].Add(new OptionEffect
+                            {
+                                option = "選択肢1",
+                                effect = "パワー+10"
+                            });
+                            data.charas[cb2.Text][cbEdit3.Text].events[4]["夏合宿（2年目）にて"].Add(new OptionEffect
+                            {
+                                option = "選択肢2",
+                                effect = "根性+10"
+                            });
+
+                            data.charas[cb2.Text][cbEdit3.Text].events[5].Add("レース入賞", new List<OptionEffect>());
+                            data.charas[cb2.Text][cbEdit3.Text].events[5]["レース入賞"].Add(new OptionEffect
+                            {
+                                option = "選択肢1",
+                                effect = "体力-20\nランダム1種+2～+8\nスキルPt+20～+45\nランダムで出走したレース場やバ場状態などに関するスキルヒント"
+                            });
+                            data.charas[cb2.Text][cbEdit3.Text].events[5]["レース入賞"].Add(new OptionEffect
+                            {
+                                option = "選択肢2",
+                                effect = "体力-10/-30\nランダム1種+2～+8\nスキルPt+20～+45\nランダムで出走したレース場やバ場状態などに関するスキルヒント"
+                            });
+
+                            data.charas[cb2.Text][cbEdit3.Text].events[6].Add("レース勝利", new List<OptionEffect>());
+                            data.charas[cb2.Text][cbEdit3.Text].events[6]["レース勝利"].Add(new OptionEffect
+                            {
+                                option = "選択肢1",
+                                effect = "体力-15\nランダム1種+5～+10\nスキルPt+35/+45\nランダムで出走したレース場やバ場状態などに関するスキルヒント"
+                            });
+                            data.charas[cb2.Text][cbEdit3.Text].events[6]["レース勝利"].Add(new OptionEffect
+                            {
+                                option = "選択肢2",
+                                effect = "体力-5/-20/-30\nランダム1種+5～+10\nスキルPt+35/+45\nランダムで出走したレース場やバ場状態などに関するスキルヒント"
+                            });
+
+                            data.charas[cb2.Text][cbEdit3.Text].events[7].Add("レース敗北", new List<OptionEffect>());
+                            data.charas[cb2.Text][cbEdit3.Text].events[7]["レース敗北"].Add(new OptionEffect
+                            {
+                                option = "選択肢1",
+                                effect = "体力-25\nランダム1種+0～+4\nスキルPt+10～+25\nランダムで出走したレース場やバ場状態などに関するスキルヒント"
+                            });
+                            data.charas[cb2.Text][cbEdit3.Text].events[7]["レース敗北"].Add(new OptionEffect
+                            {
+                                option = "選択肢2",
+                                effect = "体力-15/-25/-35\nランダム1種+0～+4\nスキルPt+10～+25\nランダムで出走したレース場やバ場状態などに関するスキルヒント"
+                            });
+
+                            data.charas[cb2.Text][cbEdit3.Text].events[8].Add("飯イベ(仮)", new List<OptionEffect>());
+                            data.charas[cb2.Text][cbEdit3.Text].events[8]["飯イベ(仮)"].Add(new OptionEffect
+                            {
+                                option = "選択肢1",
+                                effect = "体力+10、スキルPt+5"
+                            });
+                            data.charas[cb2.Text][cbEdit3.Text].events[8]["飯イベ(仮)"].Add(new OptionEffect
+                            {
+                                option = "選択肢2",
+                                effect = "体力+30\nスキルPt+10\nスピード-5\nパワー+5\n太り気味になる"
+                            });
+
+                            data.charas[cb2.Text][cbEdit3.Text].events[9].Add("お大事に！", new List<OptionEffect>());
+                            data.charas[cb2.Text][cbEdit3.Text].events[9]["お大事に！"].Add(new OptionEffect
+                            {
+                                option = "選択肢1",
+                                effect = "やる気-1\n直前のトレーニング種別-5\nランダムで「練習ベタ」"
+                            });
+                            data.charas[cb2.Text][cbEdit3.Text].events[9]["お大事に！"].Add(new OptionEffect
+                            {
+                                option = "選択肢2",
+                                effect = "失敗時\n└やる気-1\n└直前のトレーニング種別-10\n└ランダムで「練習ベタ」\n成功時\n└「練習上手〇」"
+                            });
+
+                            data.charas[cb2.Text][cbEdit3.Text].events[10].Add("無茶は厳禁！", new List<OptionEffect>());
+                            data.charas[cb2.Text][cbEdit3.Text].events[10]["無茶は厳禁！"].Add(new OptionEffect
+                            {
+                                option = "選択肢1",
+                                effect = "やる気-3\n直前のトレーニング種別-10\n5種ステータスからランダムに2種-10\nランダムで「練習ベタ」"
+                            });
+                            data.charas[cb2.Text][cbEdit3.Text].events[10]["無茶は厳禁！"].Add(new OptionEffect
+                            {
+                                option = "選択肢2",
+                                effect = "失敗時\n└やる気-3\n└直前のトレーニング種別-10\n└5種ステータスからランダムに2種-10\n└「練習ベタ」\n成功時\n└体力+10\n└「練習上手〇」"
+                            });
+
+                            #endregion
 
                             UpdateCB3(data.charas[cb2.Text].Count - 1);
                             UpdateCB4();
@@ -1012,6 +1151,11 @@ namespace UmaUmaEditor
             }
 
             UpdateOptionEffect();
+        }
+
+        private void btnOpenSaveDir_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("Explorer.exe", Environment.CurrentDirectory + @"\UmaLibrary");
         }
     }
 }
